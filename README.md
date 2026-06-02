@@ -18,7 +18,7 @@ U.S. and global economic data for Claude Desktop and any MCP-compatible client, 
 - 🗂️ **Category browsing** to discover data by topic
 - 🗓️ **Releases** tracked by FRED
 
-Every tool returns human-readable **markdown** by default, or structured **JSON** on request (`response_format: "json"`).
+Every tool returns human-readable **markdown** by default, or structured **JSON** on request (`response_format: "json"`). The server is lightweight (Python standard library + `mcp` only), applies FRED's transformations server-side so the AI gets clean numbers, and retries automatically when FRED rate-limits.
 
 ## 🔑 Get a Free API Key (required)
 
@@ -84,6 +84,23 @@ Every tool also accepts `response_format` (`"markdown"`, the default, or `"json"
 
 **Frequency aggregation (`frequency`):** empty (native) · `d` daily · `w` weekly · `m` monthly · `q` quarterly · `a` annual.
 
+### Popular series IDs
+
+You don't need to memorize IDs — `search_series` finds them — but these come up often:
+
+| Series ID | Indicator |
+|-----------|-----------|
+| `GDPC1` | Real Gross Domestic Product |
+| `UNRATE` | Unemployment Rate |
+| `CPIAUCSL` | Consumer Price Index (CPI) |
+| `PCEPI` | PCE Price Index (the Fed's preferred inflation gauge) |
+| `FEDFUNDS` | Federal Funds Rate |
+| `DGS10` | 10-Year Treasury Yield |
+| `T10Y2Y` | 10-Year minus 2-Year Treasury Spread |
+| `PAYEMS` | Nonfarm Payrolls |
+| `MORTGAGE30US` | 30-Year Fixed Mortgage Rate |
+| `UMCSENT` | Consumer Sentiment (University of Michigan) |
+
 ## 💬 Example Prompts
 
 Once the server is connected, just ask Claude:
@@ -93,7 +110,29 @@ Once the server is connected, just ask Claude:
 - "Show me year-over-year CPI inflation for the last 12 months."
 - "What's the 10-year Treasury yield, and how has it moved this year?"
 - "Find FRED series about consumer credit."
-- "What's the 10Y-2Y yield spread? Is the curve inverted?"
+- "What's the 10Y-2Y yield spread? Is the yield curve inverted?"
+- "Compare real GDP growth over the last 8 quarters."
+- "What does the PCEPI series measure, and how often is it updated?"
+
+### Example output
+
+Asking *"What's year-over-year CPI inflation for the last few months?"* runs
+`get_series_observations` with `series_id=CPIAUCSL`, `units=pc1`:
+
+```markdown
+# Consumer Price Index for All Urban Consumers: All Items (CPIAUCSL)
+
+**Units:** Percent change from year ago · **Frequency:** m
+**Total observations:** 940
+
+**Latest:** 3.39 (2026-04-01)
+
+| Date       | Value |
+|------------|-------|
+| 2026-04-01 | 3.39  |
+| 2026-03-01 | 3.29  |
+| 2026-02-01 | 2.43  |
+```
 
 ## 🐛 Troubleshooting
 
@@ -109,15 +148,26 @@ FRED allows 120 requests/minute per key. The server retries automatically; if yo
 **Tools not showing up in Claude**
 1. Confirm the config file is valid JSON (no trailing commas).
 2. Fully quit and reopen Claude Desktop.
+3. Check that `FRED_API_KEY` is set in the server's `env` block.
+
+**"FRED rejected the request"**
+The series ID is probably wrong. Use `search_series` to find the correct ID, or `get_series_info` to confirm a series exists.
 
 ## 🛠️ Manual Installation (Alternative)
 
 If you would rather run the Python file directly instead of via npx:
 
+**1. Download the server and install the dependency**
+
+Save `fred_mcp.py` somewhere on your machine, then:
+
 ```bash
 pip install mcp
-export FRED_API_KEY=your_key_here   # Windows: set FRED_API_KEY=your_key_here
 ```
+
+(or `pip3` on macOS/Linux)
+
+**2. Point Claude Desktop at it**
 
 ```json
 {
@@ -130,6 +180,24 @@ export FRED_API_KEY=your_key_here   # Windows: set FRED_API_KEY=your_key_here
   }
 }
 ```
+
+On Windows use `"command": "python"` and a path like `"C:\\path\\to\\fred_mcp.py"` (double backslashes or forward slashes).
+
+**3. Restart Claude Desktop.**
+
+## 🔒 Privacy & Rate Limits
+
+- Uses the official [FRED API](https://fred.stlouisfed.org/docs/api/fred/) with your own free API key.
+- Requests go straight from your machine to FRED. Nothing is stored or proxied.
+- FRED rate-limits **120 requests/minute per key**; the server retries with backoff on `429`.
+- Intended for personal, educational, and research use.
+
+## 📝 Notes
+
+- Series IDs are case-insensitive here (they're upper-cased for you), e.g. `unrate` works.
+- FRED marks missing observations with `.`; those are shown as `N/A`.
+- The `units` transforms (e.g. `pc1` for year-over-year %) are computed by FRED, so the values are authoritative — no client-side math.
+- Data coverage and frequency vary by series; use `get_series_info` to check before pulling a range.
 
 ## 📋 Changelog
 
