@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.python-version
+
+# Node
+node_modules/
+
+# Caches / OS
+.cache/
+.DS_Store
+Thumbs.db
+
+# Secrets - never commit API keys
+.env
+*.key
+
+# Claude Code session artifacts
+HANDOFF.md
+
+# Local QA scratch
+_qa_*.py
+_qa_*.txt
+_probe_*.py
+_probe_*.txt
+_*.txt
+
+# Linter cache
+.ruff_cache/

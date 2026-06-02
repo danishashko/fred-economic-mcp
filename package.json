@@ -1,0 +1,50 @@
+{
+  "name": "fred-mcp-server",
+  "version": "1.0.0",
+  "description": "FRED MCP Server - U.S. and global economic data (GDP, inflation, unemployment, interest rates, 800k+ series) from the Federal Reserve via Model Context Protocol",
+  "main": "bin/cli.js",
+  "bin": {
+    "fred-mcp-server": "bin/cli.js",
+    "fred-mcp": "bin/cli.js"
+  },
+  "scripts": {
+    "test": "python test_installation.py"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "fred",
+    "economics",
+    "economic-data",
+    "federal-reserve",
+    "macro",
+    "inflation",
+    "gdp",
+    "interest-rates",
+    "claude",
+    "ai",
+    "llm"
+  ],
+  "author": "Daniel Shashko",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danishashko/fred-mcp.git"
+  },
+  "homepage": "https://github.com/danishashko/fred-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/danishashko/fred-mcp/issues"
+  },
+  "engines": {
+    "node": ">=16",
+    "python": ">=3.10"
+  },
+  "files": [
+    "bin/",
+    "fred_mcp.py",
+    "requirements.txt",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ]
+}
