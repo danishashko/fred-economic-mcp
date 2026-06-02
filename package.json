@@ -1,6 +1,7 @@
 {
   "name": "fred-economic-mcp",
-  "version": "1.0.1",
+  "version": "1.0.2",
+  "mcpName": "io.github.danishashko/fred-economic-mcp",
   "description": "FRED MCP Server - U.S. and global economic data (GDP, inflation, unemployment, interest rates, 800k+ series) from the Federal Reserve via Model Context Protocol",
   "main": "bin/cli.js",
   "bin": {
@@ -45,6 +46,7 @@
     "requirements.txt",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "server.json"
   ]
 }
