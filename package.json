@@ -1,10 +1,10 @@
 {
-  "name": "fred-mcp-server",
+  "name": "fred-economic-mcp",
   "version": "1.0.0",
   "description": "FRED MCP Server - U.S. and global economic data (GDP, inflation, unemployment, interest rates, 800k+ series) from the Federal Reserve via Model Context Protocol",
   "main": "bin/cli.js",
   "bin": {
-    "fred-mcp-server": "bin/cli.js",
+    "fred-economic-mcp": "bin/cli.js",
     "fred-mcp": "bin/cli.js"
   },
   "scripts": {
@@ -29,11 +29,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danishashko/fred-mcp.git"
+    "url": "git+https://github.com/danishashko/fred-economic-mcp.git"
   },
-  "homepage": "https://github.com/danishashko/fred-mcp#readme",
+  "homepage": "https://github.com/danishashko/fred-economic-mcp#readme",
   "bugs": {
-    "url": "https://github.com/danishashko/fred-mcp/issues"
+    "url": "https://github.com/danishashko/fred-economic-mcp/issues"
   },
   "engines": {
     "node": ">=16",

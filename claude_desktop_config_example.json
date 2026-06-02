@@ -2,7 +2,7 @@
   "mcpServers": {
     "fred": {
       "command": "npx",
-      "args": ["-y", "fred-mcp-server"],
+      "args": ["-y", "fred-economic-mcp"],
       "env": {
         "FRED_API_KEY": "your_free_fred_api_key_here"
       }

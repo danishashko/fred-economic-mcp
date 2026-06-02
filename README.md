@@ -1,13 +1,13 @@
 # FRED MCP Server 📊
 
-[![npm version](https://img.shields.io/npm/v/fred-mcp-server.svg)](https://www.npmjs.com/package/fred-mcp-server)
-[![npm downloads](https://img.shields.io/npm/dm/fred-mcp-server.svg)](https://www.npmjs.com/package/fred-mcp-server)
+[![npm version](https://img.shields.io/npm/v/fred-economic-mcp.svg)](https://www.npmjs.com/package/fred-economic-mcp)
+[![npm downloads](https://img.shields.io/npm/dm/fred-economic-mcp.svg)](https://www.npmjs.com/package/fred-economic-mcp)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 U.S. and global economic data for Claude Desktop and any MCP-compatible client, powered by [FRED](https://fred.stlouisfed.org) (Federal Reserve Economic Data). Search and pull from **800,000+ economic time series** — GDP, inflation, unemployment, interest rates, and more — all from natural language.
 
-> **npm package:** [`fred-mcp-server`](https://www.npmjs.com/package/fred-mcp-server) &nbsp;·&nbsp; **GitHub repo:** [`danishashko/fred-mcp`](https://github.com/danishashko/fred-mcp). The repo name is shorter than the package name; both refer to this project.
+> **npm package:** [`fred-economic-mcp`](https://www.npmjs.com/package/fred-economic-mcp) &nbsp;·&nbsp; **GitHub repo:** [`danishashko/fred-economic-mcp`](https://github.com/danishashko/fred-economic-mcp).
 
 ## 🎯 What You Get
 
@@ -39,7 +39,7 @@ Add this to your Claude Desktop config and restart Claude:
   "mcpServers": {
     "fred": {
       "command": "npx",
-      "args": ["-y", "fred-mcp-server"],
+      "args": ["-y", "fred-economic-mcp"],
       "env": {
         "FRED_API_KEY": "your_free_fred_api_key_here"
       }
@@ -53,14 +53,14 @@ On first launch the npx wrapper creates an isolated Python environment and insta
 ### Prefer a global install?
 
 ```bash
-npm install -g fred-mcp-server
+npm install -g fred-economic-mcp
 ```
 
 ```json
 {
   "mcpServers": {
     "fred": {
-      "command": "fred-mcp-server",
+      "command": "fred-economic-mcp",
       "env": { "FRED_API_KEY": "your_free_fred_api_key_here" }
     }
   }

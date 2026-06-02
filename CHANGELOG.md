@@ -25,10 +25,10 @@ server over stdio against the live FRED API.
 - **`browse_category`** — navigate FRED's category tree to discover data by
   topic.
 - **`get_releases`** — list the economic data releases FRED tracks.
-- **`npx -y fred-mcp-server`** launcher (`bin/cli.js`) that finds Python 3.10+,
+- **`npx -y fred-economic-mcp`** launcher (`bin/cli.js`) that finds Python 3.10+,
   builds an isolated virtual environment, installs dependencies on first run,
   and passes `FRED_API_KEY` through to the server.
 - Built-in retry/backoff for FRED's 120-requests/minute rate limit, and clear,
   specific error messages (including a missing-API-key guide).
 
-[1.0.0]: https://github.com/danishashko/fred-mcp/releases/tag/v1.0.0
+[1.0.0]: https://github.com/danishashko/fred-economic-mcp/releases/tag/v1.0.0
