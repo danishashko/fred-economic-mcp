@@ -153,6 +153,15 @@ FRED allows 120 requests/minute per key. The server retries automatically; if yo
 **"FRED rejected the request"**
 The series ID is probably wrong. Use `search_series` to find the correct ID, or `get_series_info` to confirm a series exists.
 
+**Using a different model or provider (LiteLLM, OpenRouter, NVIDIA NIM, a local model)**
+This server never talks to a model. Your client starts it as a local process and
+speaks JSON-RPC over stdin/stdout, so changing `ANTHROPIC_BASE_URL` or swapping the
+model behind your client has no effect on it. If tools stop firing after a switch
+like that, check two things: the model has to support function calling, and a proxy
+configured to drop unsupported parameters can silently strip your tool definitions,
+which produces no error at all. Run `/mcp` in your client (or `claude mcp list`) to
+confirm the server is connected before suspecting the server.
+
 ## 🛠️ Manual Installation (Alternative)
 
 If you would rather run the Python file directly instead of via npx:
